@@ -40,7 +40,7 @@ def generateArrayStrings(terrainMap):
 def saveTerrainMap(map, x, y):
     heightMap, scalarMap, flowMap = generateArrayStrings(map)
     
-    template = open ("template.json", "r")
+    template = open ("Template.json", "r")
     templateString = template.read()
     template.close()
     
@@ -53,7 +53,7 @@ def saveTerrainMap(map, x, y):
     mapJson = writeValue(mapJson, ["Singletons", "WaterMap", "WaterDepths", "Array"], scalarMap)
     mapJson = writeValue(mapJson, ["Singletons", "WaterMap", "Outflows", "Array"], flowMap)
     
-    output = open("../Maps/newMap.json", "w")
+    output = open("maps/newMap.json", "w")
     output.write(json.dumps(mapJson))
     output.close()
     
