@@ -6,6 +6,7 @@ Created on Tue Sep 28 19:41:25 2021
 """
 
 import json
+import uuid
 
 def printDict(dict):
     print(json.dumps(dict, sort_keys=True, indent=4))
@@ -37,10 +38,11 @@ def generateArrayStrings(terrainMap):
     
     return heightMap, scalarMap, flowMap
     
-def saveTerrainMap(map, x, y):
+#def saveTerrainMap(map, x, y):
+def saveTerrainMap(map, x, y, entities):
     heightMap, scalarMap, flowMap = generateArrayStrings(map)
     
-    template = open ("template.json", "r")
+    template = open ("Template.json", "r")
     templateString = template.read()
     template.close()
     
@@ -52,31 +54,9 @@ def saveTerrainMap(map, x, y):
     mapJson = writeValue(mapJson, ["Singletons", "SoilMoistureSimulator", "MoistureLevels", "Array"], scalarMap)
     mapJson = writeValue(mapJson, ["Singletons", "WaterMap", "WaterDepths", "Array"], scalarMap)
     mapJson = writeValue(mapJson, ["Singletons", "WaterMap", "Outflows", "Array"], flowMap)
+    mapJson = writeValue(mapJson, ["Entities"], entities)
     
-    output = open("../Maps/newMap.json", "w")
+    output = open("maps/newMap.json", "w")
     output.write(json.dumps(mapJson))
     output.close()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
